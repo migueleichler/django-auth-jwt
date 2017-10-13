@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework_jwt.views import obtain_jwt_token
+
+from core.views import CreateUserView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^signup', CreateUserView.as_view()),
+    url(r'^login/', obtain_jwt_token),
 ]
