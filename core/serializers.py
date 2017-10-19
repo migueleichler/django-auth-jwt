@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User, Movie
+from django.contrib.auth.models import User
+
+from core.models import Movie
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
