@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Movie
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
@@ -17,3 +17,15 @@ class CreateUserSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class CreateMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = '__all__'
+
+
+class ListMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ('name', 'year', 'duration')
