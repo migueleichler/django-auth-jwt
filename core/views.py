@@ -1,7 +1,8 @@
 from rest_framework import generics
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from django.contrib.auth.models import User, Movie
+from django.contrib.auth.models import User
 
+from core.models import Movie
 from core.serializers import serializers as serializers
 
 
