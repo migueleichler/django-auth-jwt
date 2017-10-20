@@ -17,11 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from rest_framework_jwt.views import obtain_jwt_token
 
-from core.views import CreateUserView, CreateMovieView
+from core.views import CreateUserView, CreateMovieView, ListMovieView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^signup', CreateUserView.as_view()),
     url(r'^login/', obtain_jwt_token),
-    url(r'^movie/create/', CreateMovieView.as_view())
+    url(r'^movie/create/', CreateMovieView.as_view()),
+    url(r'^movie/list/', ListMovieView.as_view()),
 ]
