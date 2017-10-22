@@ -4,23 +4,34 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.contrib.auth.models import User
 
 from core.models import Movie
-from .serializers import CreateUserSerializer, CreateMovieSerializer, ListMovieSerializer
+from core import serializers as core_serializers
 
 
 class CreateUserView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = CreateUserSerializer
+    serializer_class = core_serializers.CreateUserSerializer
     permission_classes = (AllowAny,)
 
 
-class CreateMovieView(generics.CreateAPIView):
+class ListCreateMovieView(generics.ListCreateAPIView):
     queryset = Movie.objects.all()
-    serializer_class = CreateMovieSerializer
+    serializer_class = core_serializers.MovieSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (JSONWebTokenAuthentication, )
+    authentication_classes = (JSONWebTokenAuthentication,)
+
+    # def get_queryset(self):
+    #     movie = Movie.objects.all()
+    #     name = self.request.query_params.get('name')
+    #     year = self.request.query_params.get('year')
+    #
+    #     if name:
+    #         movie = movie.filter(name=name)
+    #     if year:
+    #         movie = movie.filter(year=year)
+    #
+    #     return movie
 
 
-class ListMovieView(generics.ListAPIView):
+class MovieByIdView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
-    serializer_class = ListMovieSerializer
-    permission_classes = (IsAuthenticated,)
+    serializer_class = core_serializers.MovieSerializer

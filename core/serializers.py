@@ -21,13 +21,8 @@ class CreateUserSerializer(serializers.ModelSerializer):
         return user
 
 
-class CreateMovieSerializer(serializers.ModelSerializer):
+class MovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = '__all__'
-
-
-class ListMovieSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Movie
-        fields = ('name', 'year', 'duration')
+        read_only_fields = ('name', 'year', 'duration')
