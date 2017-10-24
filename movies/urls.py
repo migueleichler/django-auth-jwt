@@ -20,13 +20,13 @@ from rest_framework_jwt.views import obtain_jwt_token
 from core import views as core_views
 
 url_movie = [
-    url(r'^signup', core_views.ListCreateUserView.as_view()),
+    url(r'^signup', core_views.CreateUserView.as_view()),
     url(r'^login/', obtain_jwt_token),
-    url(r'^movie/$', core_views.CreateMovieView.as_view()),
+    url(r'^movie/$', core_views.ListMovieView.as_view()),
     url(r'^movie/(?P<pk>[0-9]+)/$', core_views.MovieByIdView.as_view()),
 ]
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/v1/', include('url_movie')),
+    url(r'^api/v1/', include(url_movie)),
 ]

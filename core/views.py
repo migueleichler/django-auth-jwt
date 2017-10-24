@@ -13,7 +13,7 @@ class CreateUserView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
 
 
-class ListCreateMovieView(generics.ListCreateAPIView):
+class ListMovieView(generics.ListCreateAPIView):
     queryset = Movie.objects.all()
     serializer_class = core_serializers.MovieSerializer
     permission_classes = (IsAuthenticated,)
@@ -35,3 +35,5 @@ class ListCreateMovieView(generics.ListCreateAPIView):
 class MovieByIdView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
     serializer_class = core_serializers.MovieSerializer
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JSONWebTokenAuthentication,)
