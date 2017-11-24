@@ -19,18 +19,6 @@ class ListMovieView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     authentication_classes = (JSONWebTokenAuthentication,)
 
-    # def get_queryset(self):
-    #     movie = Movie.objects.all()
-    #     name = self.request.query_params.get('name')
-    #     year = self.request.query_params.get('year')
-    #
-    #     if name:
-    #         movie = movie.filter(name=name)
-    #     if year:
-    #         movie = movie.filter(year=year)
-    #
-    #     return movie
-
 
 class MovieByIdView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Movie.objects.all()
